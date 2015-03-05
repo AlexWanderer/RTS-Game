@@ -124,6 +124,24 @@ public class UserInput : MonoBehaviour {
 		return ResourceManager.InvalidPosition;
 	}
 
+	private void MouseHover()
+	{
+		if (player.hud.MouseInBounds ()) {
+			GameObject hoverObject = FindHitObject();
+			if(hoverObject){
+				if(player.SelectedObject) player.SelectedObject.SetHoverState(hoverObject);
+				else if (hoverObject.name != "Ground"){
+					Player owner = hoverObject.transform.root.GetComponent< Player >();
+					if(owner){
+						Unit unit = hoverObject.transform.root.GetComponent < Unit >();
+						Building building = hoverObject.transform.root.GetComponent < Building >();
+						if(owner.username == player.username && (unit||building)) player.hud.SetCursorState(CursorState.Select);
+					}
+				}
+			}
+		}
+	}
+
 	private void LeftMouseClick() 
 	{
 		if(player.hud.MouseInBounds()) {
@@ -132,7 +150,7 @@ public class UserInput : MonoBehaviour {
 			if(hitObject && hitPoint != ResourceManager.InvalidPosition) {
 				if(player.SelectedObject) player.SelectedObject.MouseClick(hitObject, hitPoint, player);
 				else if(hitObject.name!="Ground") {
-					WorldObject worldObject = hitObject.transform.root.GetComponent< WorldObject >();
+					WorldObject worldObject = hitObject.transform.parent.GetComponent < WorldObject >();
 					if(worldObject) {
 						//we already know the player has no selected object
 						player.SelectedObject = worldObject;
