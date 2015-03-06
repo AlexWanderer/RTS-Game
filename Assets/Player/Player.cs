@@ -8,59 +8,60 @@ public class Player : MonoBehaviour {
 	public string username;
 	public bool human;
 	public HUD hud;
-	public int startMoney, startMoneyLimit, startPower, startPoserLimit;
+	public int startMoney, startMoneyLimit, startPower, startPowerLimit;
 
-	private Dictionary< ResourceType, int> resources, resourceLimits;
+	private Dictionary< ResourceType, int > resources, resourceLimits;
 
 	public WorldObject SelectedObject { get; set; }
 
 
-	void Awake(){
-		resources = InitResourceList ();
-		resourceLimits = InitResourceList ();
+	void Awake() {
+		resources = InitResourceList();
+		resourceLimits = InitResourceList();
 	}
 
 
 	// Use this for initialization
 	void Start () {
 		hud = GetComponentInChildren<HUD>();
+		AddStartResourceLimits();
+		AddStartResources();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (human) {
+		if(human) {
 			hud.SetResourceValues(resources, resourceLimits);
-		}	
+		}
 	}
 
-	public void AddResources(ResourceType type, int amount)
+	public void AddResource(ResourceType type, int amount) 
 	{
-		resources [type] += amount;
+		resources[type] += amount;
+	}
+	
+	public void IncrementResourceLimit(ResourceType type, int amount) 
+	{
+		resourceLimits[type] += amount;
 	}
 
-	public void IncrementResourceLimit(ResourceType type, int amount)
+	private Dictionary< ResourceType, int > InitResourceList() 
 	{
-		resourceLimits [type] += amount;
-	}
-
-	private Dictionary < ResourceType, int> InitResourceList()
-	{
-		Dictionary < ResourceType, int> list = new Dictionary<ResourceType, int> ();
-		list.Add (ResourceType.Money, 0);
-		list.Add (ResourceType.Power, 0);
+		Dictionary< ResourceType, int > list = new Dictionary< ResourceType, int >();
+		list.Add(ResourceType.Money, 0);
+		list.Add(ResourceType.Power, 0);
 		return list;
 	}
 
-	private void AddStartResourceLimits()
+	private void AddStartResourceLimits() 
 	{
-		IncrementResourceLimit (ResourceType.Money, startMoneyLimit);
-		IncrementResourceLimit (ResourceType.Power, startPoserLimit);
-
+		IncrementResourceLimit(ResourceType.Money, startMoneyLimit);
+		IncrementResourceLimit(ResourceType.Power, startPowerLimit);
 	}
-
-	private void AddStartResources()
+	
+	private void AddStartResources() 
 	{
-		AddResources (ResourceType.Money, startMoney);
-		AddResources (ResourceType.Power, startPower);
+		AddResource(ResourceType.Money, startMoney);
+		AddResource(ResourceType.Power, startPower);
 	}
 }

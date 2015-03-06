@@ -28,7 +28,7 @@ public class UserInput : MonoBehaviour {
 		float ypos = Input.mousePosition.y;
 		Vector3 movement = new Vector3(0,0,0);
 		bool mouseScroll = false;
-
+		
 		//horizontal camera movement
 		if(xpos >= 0 && xpos < ResourceManager.ScrollWidth) {
 			movement.x -= ResourceManager.ScrollSpeed;
@@ -40,7 +40,7 @@ public class UserInput : MonoBehaviour {
 			mouseScroll = true;
 		}
 		
-		//vertical camera movement !!! REDO
+		//vertical camera movement
 		if(ypos >= 0 && ypos < ResourceManager.ScrollWidth) {
 			movement.z -= ResourceManager.ScrollSpeed;
 			player.hud.SetCursorState(CursorState.PanDown);
@@ -51,7 +51,7 @@ public class UserInput : MonoBehaviour {
 			mouseScroll = true;
 		}
 
-		if (!mouseScroll) {
+		if(!mouseScroll) {
 			player.hud.SetCursorState(CursorState.Select);
 		}
 
@@ -106,6 +106,7 @@ public class UserInput : MonoBehaviour {
 	{
 		if(Input.GetMouseButtonDown(0)) LeftMouseClick();
 		else if(Input.GetMouseButtonDown(1)) RightMouseClick();
+		MouseHover ();
 	}
 
 	private GameObject FindHitObject() 
@@ -124,18 +125,17 @@ public class UserInput : MonoBehaviour {
 		return ResourceManager.InvalidPosition;
 	}
 
-	private void MouseHover()
-	{
-		if (player.hud.MouseInBounds ()) {
+	private void MouseHover() {
+		if(player.hud.MouseInBounds()) {
 			GameObject hoverObject = FindHitObject();
-			if(hoverObject){
+			if(hoverObject) {
 				if(player.SelectedObject) player.SelectedObject.SetHoverState(hoverObject);
-				else if (hoverObject.name != "Ground"){
+				else if(hoverObject.name != "Ground") {
 					Player owner = hoverObject.transform.root.GetComponent< Player >();
-					if(owner){
-						Unit unit = hoverObject.transform.root.GetComponent < Unit >();
-						Building building = hoverObject.transform.root.GetComponent < Building >();
-						if(owner.username == player.username && (unit||building)) player.hud.SetCursorState(CursorState.Select);
+					if(owner) {
+						Unit unit = hoverObject.transform.parent.GetComponent< Unit >();
+						Building building = hoverObject.transform.parent.GetComponent< Building >();
+						if(owner.username == player.username && (unit || building)) player.hud.SetCursorState(CursorState.Select);
 					}
 				}
 			}

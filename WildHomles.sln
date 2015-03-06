@@ -7,6 +7,8 @@ Project("{433C2A9C-E1CB-ACCC-8C19-3B4D73487DE6}") = "WildHomles", "Assembly-CSha
 EndProject
 Project("{433C2A9C-E1CB-ACCC-8C19-3B4D73487DE6}") = "WildHomles", "Assembly-CSharp-Editor.csproj", "{CCBEC6DF-DFA5-47BA-3F33-A5F1E2A62B0D}"
 EndProject
+Project("{433C2A9C-E1CB-ACCC-8C19-3B4D73487DE6}") = "WildHomles", "Assembly-UnityScript.unityproj", "{36C8BCAA-0D84-756F-BF4B-669E32D95793}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,11 +27,15 @@ Global
 		{CCBEC6DF-DFA5-47BA-3F33-A5F1E2A62B0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCBEC6DF-DFA5-47BA-3F33-A5F1E2A62B0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCBEC6DF-DFA5-47BA-3F33-A5F1E2A62B0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C8BCAA-0D84-756F-BF4B-669E32D95793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C8BCAA-0D84-756F-BF4B-669E32D95793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C8BCAA-0D84-756F-BF4B-669E32D95793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C8BCAA-0D84-756F-BF4B-669E32D95793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																	GlobalSection(MonoDevelopProperties) = preSolution
+																						GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
