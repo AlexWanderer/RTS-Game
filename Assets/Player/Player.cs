@@ -45,6 +45,11 @@ public class Player : MonoBehaviour {
 		resourceLimits[type] += amount;
 	}
 
+	public void AddUnit(string unitName, Vector3 spawnPoint, Quaternion rotation)
+	{
+		Debug.Log ("added " + unitName + " to " + username);
+	}
+
 	private Dictionary< ResourceType, int > InitResourceList() 
 	{
 		Dictionary< ResourceType, int > list = new Dictionary< ResourceType, int >();
