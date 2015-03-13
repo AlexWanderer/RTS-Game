@@ -35,9 +35,9 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void AddResource(ResourceType type, int amount) 
+	public void AddResource(ResourceType rtype, int amount) 
 	{
-		resources[type] += amount;
+		resources[rtype] += amount;
 	}
 	
 	public void IncrementResourceLimit(ResourceType type, int amount) 
@@ -45,9 +45,12 @@ public class Player : MonoBehaviour {
 		resourceLimits[type] += amount;
 	}
 
-	public void AddUnit(string unitName, Vector3 spawnPoint, Quaternion rotation)
-	{
-		Debug.Log ("added " + unitName + " to " + username);
+	public void AddUnit(string unitName, Vector3 spawnPoint, Vector3 rallyPoint, Quaternion rotation) {
+		Units units = GetComponentInChildren< Units >();
+		GameObject newUnit = (GameObject)Instantiate(ResourceManager.GetUnit(unitName),spawnPoint, rotation);
+		newUnit.transform.parent = units.transform;
+		Unit unitObject = newUnit.GetComponent< Unit >();
+		if(unitObject && spawnPoint != rallyPoint) unitObject.StartMove(rallyPoint);
 	}
 
 	private Dictionary< ResourceType, int > InitResourceList() 

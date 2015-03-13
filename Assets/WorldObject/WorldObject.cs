@@ -38,6 +38,15 @@ public class WorldObject : MonoBehaviour {
 	}
 
 
+	public bool IsOwnedBy(Player owner)
+	{
+		if (player && player.Equals (owner)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public virtual void SetHoverState(GameObject hoverObject)
 	{
 		//only handle input if owned by a human player and currently selected
@@ -47,7 +56,7 @@ public class WorldObject : MonoBehaviour {
 	}
 
 
-	public void SetSelection(bool selected, Rect playingArea) {
+	public virtual void SetSelection(bool selected, Rect playingArea) {
 		currentlySelected = selected;
 		if(selected) this.playingArea = playingArea;
 	}

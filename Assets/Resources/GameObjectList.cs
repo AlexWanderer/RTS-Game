@@ -70,6 +70,4 @@ public class GameObjectList : MonoBehaviour {
 		}
 		return null;
 	}
-
-
 }

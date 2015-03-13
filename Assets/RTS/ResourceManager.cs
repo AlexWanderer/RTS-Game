@@ -24,6 +24,11 @@ namespace RTS {
 		private static GUISkin selectBoxSkin;
 		public static GUISkin SelectBoxSkin { get { return selectBoxSkin; } }
 
+
+		public static void StoreSelectBoxItems(GUISkin skin) {
+			selectBoxSkin = skin;
+		}
+
 		public static void SetGameObjectList(GameObjectList objectList) {
 			gameObjectList = objectList;
 		}
@@ -47,11 +52,5 @@ namespace RTS {
 		public static Texture2D GetBuildImage(string name) {
 			return gameObjectList.GetBuildImage(name);
 		}
-		
-		public static void StoreSelectBoxItems(GUISkin skin) {
-			selectBoxSkin = skin;
-		}
-
-
 	}
 }
